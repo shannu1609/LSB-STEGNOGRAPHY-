@@ -26,10 +26,19 @@ Platform: Windows / Linux
 
 📂 Project Structure
 📁 Steganography-Project
+
  ┣ 📄 main.c 
+ 
  ┣ 📄 encode.c 
+
+ 
  ┣ 📄 decode.c
+ 
  ┣ 📄 README.md
+ 
  ┗ 📂 images
+ 
      ┣ beautiful_image.bmp
+     
      ┗ default_image.bmp
+     
