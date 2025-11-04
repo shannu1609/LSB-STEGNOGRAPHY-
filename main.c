@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
     //  true -> Step 5 , false - > terminate the program
     // Step 5 : Call the do_encoding (&encInfo);
 
-    if(argc >= 4 || argc>=3)//Argument count must be validated that is greater than 3 or 4.
+    if(argc >= 4)//Argument count must be validated that is greater than 3 or 4.
     {
         if(check_operation_type(argv[1]) == e_encode)//Condition to check for encoding 
         {
@@ -38,7 +38,20 @@ int main(int argc, char *argv[])
             }
 
         }
-        else if(check_operation_type(argv[1]) == e_decode)//Condition to check for decoding
+        else if(check_operation_type(argv[1]) == e_unsupported)
+        {
+            printf("Error : Argument 1 must be -e or -d\n");
+            return 0;
+        }
+    }
+    if(argc == 3 && strcmp(argv[1],"-e") == 0)
+    {
+        printf("Error : Arguments must be minimum 4 for encode\n");
+        return 0;
+    }
+    if(argc >= 3)
+    {
+        if(check_operation_type(argv[1]) == e_decode)//Condition to check for decoding
         {
             DecodeInfo dec_info;
             if(read_and_validate_decode_args(argv,&dec_info) == e_success)//To read and validate remaining arguments
@@ -49,7 +62,7 @@ int main(int argc, char *argv[])
                 }
                 else
                 {
-                    printf("Decoding is not successful\n");
+                    printf("Decoding is not successful provide a valid encoded file\n");
                 }
                 
             }
@@ -58,7 +71,7 @@ int main(int argc, char *argv[])
                 return 0;
             }
         }
-        else
+        else if(check_operation_type(argv[1]) == e_unsupported)
         {
             printf("Error : Argument 1 must be -e or -d\n");
             return 0;
